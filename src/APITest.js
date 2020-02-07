@@ -5,10 +5,10 @@ class APITest extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            players: {},
-            characters: {},
-            tags: {},
-            events: {},
+            players: [],
+            characters: [],
+            tags: [],
+            events: [],
             loading: true
         }
     }
@@ -20,10 +20,10 @@ class APITest extends React.Component {
             axios.get("http://localhost:5000/api/events/")
         ]);
         this.setState({
-            players: playerResponse.data,
-            characters: characterResponse.data,
-            tags: tagResponse.data,
-            events: eventResponse.data,
+            players: Object.values(playerResponse.data),
+            characters: Object.values(characterResponse.data),
+            tags: Object.values(tagResponse.data),
+            events: Object.values(eventResponse.data),
             loading: !this.state.loading
         }, () => {
             console.log(this.state.players);
@@ -34,7 +34,6 @@ class APITest extends React.Component {
         })
     }
     render(){
-        var characterNames = [];
         return (
             <div>
                 {/* Map calls a function on every array element, taking said function in as a parameter.
@@ -43,19 +42,13 @@ class APITest extends React.Component {
                  character - represent array element
                 */}
                 <div>
-                {
-                    this.state.loading ?
-                    <p>Hasn't been loaded yet</p>
-                    :
-                    Object.keys(this.state.characters).map((character, i) => {
-                        characterNames.Push(this.state.characters[character]);
-                        // return (
-                        //     <p key={i}>{this.state.characters[character]}</p>
-                        //     // Why am I not getting the value?
-                        // )
-                        console.log(characterNames);
-                    })
-                }
+                    {
+                        Object.keys(this.state.characters).map((character, index) => {
+                        return (
+                        <p key={index}>{this.state.characters[character].characterName}</p>
+                        );
+                        })
+                    }
                 </div>
             </div>
         )
