@@ -10,7 +10,8 @@ class APITest extends React.Component {
             tags: [],
             events: [],
             loading: true,
-            search: ""
+            search: "",
+            results: []
         }
         this.updateSearch = this.updateSearch.bind(this);
     }
@@ -40,8 +41,14 @@ class APITest extends React.Component {
             search: e.target.value
         },
         () => {
-            console.log(this.state.search);
+            this.findResults();
         })
+    }
+    findResults(){
+        // Object.keys(this.state.characters.map((character, index) => {
+        //   if(this.state.characters[character].characterName == this.state.search
+        // })
+        console.log(this.state.search);
     }
     render(){
         return (
