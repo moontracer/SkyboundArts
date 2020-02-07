@@ -9,8 +9,10 @@ class APITest extends React.Component {
             characters: [],
             tags: [],
             events: [],
-            loading: true
+            loading: true,
+            search: ""
         }
+        this.updateSearch = this.updateSearch.bind(this);
     }
     async componentDidMount(){
         const [playerResponse, characterResponse, tagResponse, eventResponse] = await Promise.all([
@@ -33,6 +35,14 @@ class APITest extends React.Component {
             console.log(this.state.loading);
         })
     }
+    updateSearch(e){
+        this.setState({
+            search: e.target.value
+        },
+        () => {
+            console.log(this.state.search);
+        })
+    }
     render(){
         return (
             <div>
@@ -41,6 +51,7 @@ class APITest extends React.Component {
                  Characters - represents entire array
                  character - represent array element
                 */}
+                {/* Characters */}
                 <div>
                     {
                         Object.keys(this.state.characters).map((character, index) => {
@@ -50,6 +61,38 @@ class APITest extends React.Component {
                         })
                     }
                 </div>
+                {/* Players */}
+                <div>
+                    {
+                        Object.keys(this.state.players).map((player, index) => {
+                            return (
+                                <p key={index}>{this.state.players[player].playerName}</p>
+                            );
+                        })
+                    }
+                </div>
+                {/* Events */}
+                <div>
+                    {
+                        Object.keys(this.state.events).map((event, index) => {
+                            return (
+                            <p key={index}>{this.state.events[event].eventName}</p>
+                            );
+                        })
+                    }
+                </div>
+                {/* Tags */}
+                <div>
+                    {
+                        Object.keys(this.state.tags).map((tag, index) => {
+                            return (
+                            <p key={index}>{this.state.tags[tag].tagName}</p>
+                            );
+                        })
+                    }
+                </div>
+                {/* Search Input */}
+                <input type = "text" placeholder="Placeholder Search" onChange={this.updateSearch} />
             </div>
         )
     }
