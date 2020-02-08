@@ -14,6 +14,7 @@ class APITest extends React.Component {
             results: []
         }
         this.updateSearch = this.updateSearch.bind(this);
+        this.runAPISearch = this.runAPISearch.bind(this);
     }
     async componentDidMount(){
         const [playerResponse, characterResponse, tagResponse, eventResponse] = await Promise.all([
@@ -110,6 +111,9 @@ class APITest extends React.Component {
                 })
             })
         }
+    }
+    runAPISearch(){
+
     }
     render(){
         return (
