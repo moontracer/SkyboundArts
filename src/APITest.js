@@ -41,14 +41,75 @@ class APITest extends React.Component {
             search: e.target.value
         },
         () => {
-            this.findResults();
+            this.findPlayers();
+            this.findCharacters();
+            this.findTags();
+            this.findEvents();
         })
     }
-    findResults(){
-        // Object.keys(this.state.characters.map((character, index) => {
-        //   if(this.state.characters[character].characterName == this.state.search
-        // })
-        console.log(this.state.search);
+    findPlayers(){
+        if (this.state.search.length >= 2){
+            Object.keys(this.state.players).map((player) => {
+                var possibleResult = this.state.players[player].playerName.substring(0, this.state.search.length);
+                //lowercasing both the state and the result
+                this.setState({
+                    search: this.state.search.toLocaleLowerCase()
+                }, () => {
+                    possibleResult = possibleResult.toLocaleLowerCase();
+                    if (possibleResult == this.state.search){
+                        console.log(possibleResult);
+                    }
+                })
+            })
+        }
+    }
+    findCharacters(){
+        if (this.state.search.length >= 2) {
+            Object.keys(this.state.characters).map((character) => {
+            var possibleResult = this.state.characters[character].characterName.substring(0, this.state.search.length);
+            //lowercasing both the state and the result
+            this.setState({
+                search: this.state.search.toLocaleLowerCase()
+            }, () => {
+                possibleResult = possibleResult.toLocaleLowerCase();
+                if (possibleResult == this.state.search){
+                    console.log(possibleResult);
+                }
+            })
+            })
+        }
+    }
+    findTags(){
+        if(this.state.search.length >= 2){
+            Object.keys(this.state.tags).map((tag) => {
+                var possibleResult = this.state.tags[tag].tagName.substring(0, this.state.search.length);
+                //lowercasing both the state and the result
+                this.setState({
+                    search: this.state.search.toLocaleLowerCase()
+                }, () => {
+                    possibleResult = possibleResult.toLocaleLowerCase();
+                    if (possibleResult == this.state.search){
+                        console.log(possibleResult);
+                    }
+                })
+            })
+        }
+    }
+    findEvents(){
+        if(this.state.search.length >= 2){
+            Object.keys(this.state.events).map((event) => {
+                var possibleResult = this.state.events[event].eventName.substring(0, this.state.search.length);
+                //lowercasing both the state and the result
+                this.setState({
+                    search: this.state.search.toLocaleLowerCase()
+                }, () => {
+                    possibleResult = possibleResult.toLocaleLowerCase();
+                    if (possibleResult == this.state.search){
+                        console.log(possibleResult);
+                    }
+                })
+            })
+        }
     }
     render(){
         return (
