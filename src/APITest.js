@@ -12,10 +12,15 @@ class APITest extends React.Component {
             loading: true,
             search: "",
             tempResults: [],
-            updatedResults: []
+            updatedResults: [],
+            videos: [],
+            playersQuery: [],
+            charactersQuery: [],
+            tagsQuery: [],
+            eventsQuery: []
         }
         this.updateSearch = this.updateSearch.bind(this);
-        this.runAPISearch = this.runAPISearch.bind(this);
+        this.startSearch = this.startSearch.bind(this);
     }
     async componentDidMount(){
         const [playerResponse, characterResponse, tagResponse, eventResponse] = await Promise.all([
@@ -53,11 +58,10 @@ class APITest extends React.Component {
                 this.setState({tempResults: []})
             }
             this.setState({updatedResults: Array.from(new Set(this.state.tempResults))})
-        }, 1000);
+        }, 700);
         })
     }
     findPlayers(){
-        if (this.state.search.length >= 2){
             Object.keys(this.state.players).map((player) => {
                 var finalResult = this.state.players[player].playerName;
                 var possibleResult = this.state.players[player].playerName.substring(0, this.state.search.length);
@@ -71,10 +75,8 @@ class APITest extends React.Component {
                     }
                     })
             })
-        }
     }
     findCharacters(){
-        if (this.state.search.length >= 2) {
             Object.keys(this.state.characters).map((character) => {
             var finalResult = this.state.characters[character].characterName;
             var possibleResult = this.state.characters[character].characterName.substring(0, this.state.search.length);
@@ -88,11 +90,9 @@ class APITest extends React.Component {
                 }
             })
             })
-        }
     }
     findTags(){
-        if(this.state.search.length >= 2){
-            Object.keys(this.state.tags).map((tag) => {
+                Object.keys(this.state.tags).map((tag) => {
                 var finalResult = this.state.tags[tag].tagName;
                 var possibleResult = this.state.tags[tag].tagName.substring(0, this.state.search.length);
                 //lowercasing both the state and the result
@@ -105,11 +105,9 @@ class APITest extends React.Component {
                     }
                 })
             })
-        }
     }
     findEvents(){
-        if(this.state.search.length >= 2){
-            Object.keys(this.state.events).map((event) => {
+                Object.keys(this.state.events).map((event) => {
                 var finalResult = this.state.events[event].eventName;
                 var possibleResult = this.state.events[event].eventName.substring(0, this.state.search.length);
                 //lowercasing both the state and the result
@@ -122,10 +120,44 @@ class APITest extends React.Component {
                     }
                 })
             })
-        }
     }
-    runAPISearch(){
-
+    startSearch(e){
+        //initial variables for axios string
+        //axios.get("http://localhost:5000/api/videos/search/")
+        //temporary array created to fetch values from the set
+        //var newArr = Array.from(this.state.updatedResults);
+        var searchItem = e.target.innerText;
+        //console.log(e.target.innerText);
+        //quick check if it's a player
+        Object.keys(this.state.players).map((player) => {
+            if (this.state.players[player].playerName == searchItem){
+                this.searchOptions(this.state.players[player].playerName, "", "");
+            }
+        })
+       //quick check if it's a character
+        Object.keys(this.state.characters).map((character) => {
+            if (this.state.characters[character].characterName == searchItem){
+                this.searchOptions("", this.state.characters[character].characterName, "");
+            }
+        })
+        //quick check if it's a tag - add tag functionality later on!
+        // Object.keys(this.state.tags).map((tag) => {
+        //     if (this.state.tags[tag].tagName == searchItem){
+        //     }
+        // })
+        //quick check if it's an event
+        Object.keys(this.state.events).map((event) => {
+            if (this.state.events[event].eventName == searchItem){
+                this.searchOptions("", "", this.state.events[event].eventName);
+            }
+        })
+    }
+    async searchOptions(playerName = "", characterName = "", eventName = ""){
+        const videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+        this.setState({videos: Object.values(videoResponse.data)},
+        () => {
+            console.log(this.state.videos);
+        })        
     }
     render(){
         return (
@@ -187,11 +219,29 @@ class APITest extends React.Component {
                 <ul>
                     {
                         this.state.updatedResults.map(result => (
-                            <li key={result}>{result}</li>
+                            <li key={result} onClick={this.startSearch}>{result}</li>
                         ))
                     }
                 </ul>
                 </div>
+                    {
+                        Object.keys(this.state.videos).map((video, index) => {
+                            return (
+                            <div key={index}>
+                            <p>{this.state.videos[video].eventName}</p>
+                            <p>{this.state.videos[video].p1Character}</p>
+                            <p>{this.state.videos[video].p2Character}</p>
+                            {/* Won't be in final CSS but here for testing */}
+                            <p>{this.state.videos[video].winnerCharacter}</p>
+                            <p>{this.state.videos[video].p1Player}</p>
+                            <p>{this.state.videos[video].p2Player}</p>
+                            {/* Won't be in final CSS but here for testing */}
+                            <p>{this.state.videos[video].winnerPlayer}</p>
+                            <a href={this.state.videos[video].videoLink}>VOD</a>
+                            </div>
+                            );
+                        })
+                    }
             </div>
         )
     }
