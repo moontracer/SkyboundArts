@@ -16,8 +16,9 @@ class APITest extends React.Component {
             videos: [],
             playersQuery: [],
             charactersQuery: [],
-            tagsQuery: [],
-            eventsQuery: []
+            tagsQuery: null,
+            eventsQuery: [],
+            videoIDs: [],
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
@@ -34,7 +35,7 @@ class APITest extends React.Component {
             characters: Object.values(characterResponse.data),
             tags: Object.values(tagResponse.data),
             events: Object.values(eventResponse.data),
-            loading: !this.state.loading
+            loading: !this.state.loading,
         }, () => {
             console.log(this.state.players);
             console.log(this.state.characters);
@@ -58,7 +59,7 @@ class APITest extends React.Component {
                 this.setState({tempResults: []})
             }
             this.setState({updatedResults: Array.from(new Set(this.state.tempResults))})
-        }, 700);
+        }, 200);
         })
     }
     findPlayers(){
@@ -140,25 +141,56 @@ class APITest extends React.Component {
                 this.searchOptions("", this.state.characters[character].characterName, "");
             }
         })
-        //quick check if it's a tag - add tag functionality later on!
-        // Object.keys(this.state.tags).map((tag) => {
-        //     if (this.state.tags[tag].tagName == searchItem){
-        //     }
-        // })
+        //quick check if it's a tag
+        Object.keys(this.state.tags).map((tag) => {
+            if(this.state.tags[tag].tagName == searchItem){
+                //Haven't checked for existing IDs with tags yet
+                this.setState({tagsQuery: this.state.tags[tag].tagId})
+            }
+            //this.tagSearch(this.state.tagsQuery);
+        })
         //quick check if it's an event
         Object.keys(this.state.events).map((event) => {
             if (this.state.events[event].eventName == searchItem){
                 this.searchOptions("", "", this.state.events[event].eventName);
             }
-        })
+        }) 
     }
     async searchOptions(playerName = "", characterName = "", eventName = ""){
-        const videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
-        this.setState({videos: Object.values(videoResponse.data)},
-        () => {
-            console.log(this.state.videos);
-        })        
+        if (this.state.videoIDs.length == 0){
+            var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+            this.setState({
+                videos: Object.values(videoResponse.data)
+            },
+            () => {
+                console.log(this.state.videos);
+                Object.keys(this.state.videos).map((video) => {
+                    this.setState({videoIDs: this.state.videos[video].videoId})
+                })
+            })
+        }
+        else {
+            var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+            this.setState({
+                videos: Object.values(videoResponse.data)
+            },
+            () => {
+                console.log(this.state.videos);
+                Object.keys(this.state.videos).map((video) => {
+                    this.setState({videoIDs: this.state.videos[video].videoId})
+                })
+            })
+        }        
     }
+    // async tagSearch(tagID = null){
+    //     const tagSearchResponse = await axios.get(`http://localhost:5000/api/mapvideotag/search/?searchTagID=${tagID}`);
+    //     this.setState({
+    //         videos: Object.values(tagSearchResponse.data)
+    //     },
+    //     () => {
+            
+    //     })
+    // }
     render(){
         return (
             <div>
