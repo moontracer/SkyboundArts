@@ -19,6 +19,8 @@ class APITest extends React.Component {
             tagsQuery: null,
             eventsQuery: [],
             videoIDs: [],
+            searchTags: [],
+            tempTags: []
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
@@ -145,9 +147,11 @@ class APITest extends React.Component {
         Object.keys(this.state.tags).map((tag) => {
             if(this.state.tags[tag].tagName == searchItem){
                 //Haven't checked for existing IDs with tags yet
-                this.setState({tagsQuery: this.state.tags[tag].tagId})
+                this.setState({tagsQuery: this.state.tags[tag].tagId},
+                () => {
+                    this.tagSearch();
+                })
             }
-            //this.tagSearch(this.state.tagsQuery);
         })
         //quick check if it's an event
         Object.keys(this.state.events).map((event) => {
@@ -182,15 +186,43 @@ class APITest extends React.Component {
             })
         }        
     }
-    // async tagSearch(tagID = null){
-    //     const tagSearchResponse = await axios.get(`http://localhost:5000/api/mapvideotag/search/?searchTagID=${tagID}`);
-    //     this.setState({
-    //         videos: Object.values(tagSearchResponse.data)
-    //     },
-    //     () => {
-            
-    //     })
-    // }
+    async tagSearch(){
+        const tagSearchResponse = await axios.get(`http://localhost:5000/api/mapvideotag/search/?searchTagID=${this.state.tagsQuery}`);
+        // this.setState({
+        //     searchTags: Object.values(tagSearchResponse.data)
+        // },
+        // () => {
+        //     //console.log(this.state.searchTags);
+        //     // Object.keys(this.state.searchTags).map((tag) => {
+        //     //     this.setState({videoIDs: this.state.searchTags[tag].videoId})
+        //     // },
+        //     // () => {
+        //     //     console.log(this.state.videoIDs);
+        //     // })
+        //     //Create a temp search tag array, push all of the videoIDs into it
+        //     //then, create a new array and utilize it in setstate of videoIDs
+        //     var tempArray = [];
+        //     Object.keys(this.state.searchTags).map((tag) => {
+        //         tempArray.push(this.state.searchTags[tag].videoId);
+        //         //utilize tempArray in setState
+        //         console.log(tempArray);
+        //     },
+        //     () => {
+        //     })
+        // })
+        this.setState({
+            searchTags: Object.values(tagSearchResponse.data)
+        },
+        () => {
+            this.setState(state => ({
+                tempTags: state.searchTags.map(tag => {
+                    return tag.videoId;
+                })
+            }), () => {
+                console.log(this.state.tempTags);
+            })
+        })
+    }
     render(){
         return (
             <div>
