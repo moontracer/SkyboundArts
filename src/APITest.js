@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { PlusCircle, Menu } from "react-feather";
 
 class APITest extends React.Component {
     constructor(props){
@@ -251,59 +252,20 @@ class APITest extends React.Component {
     render(){
         return (
             <div>
-                {/* Map calls a function on every array element, taking said function in as a parameter.
-                 It also creates a new array instead of overwriting data! 
-                 Characters - represents entire array
-                 character - represent array element
-                */}
-                {/* Characters */}
-                <div>
-                    { /*
-                        Object.keys(this.state.characters).map((character, index) => {
-                        return (
-                        <p key={index}>{this.state.characters[character].characterName}</p>
-                        );
-                        })
-                        */
-                    }
+                <nav>
+                    <a className="navLink" href="https://google.com">SKYBOUND ARTS</a>
+                    <PlusCircle />
+                    <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
+                    <Menu />
+                </nav>
+                <div id="imgHeadContainer">
+                    <p id="matchFinderText">Match Finder</p>
                 </div>
-                {/* Players */}
-                <div>
-                    { /*
-                        Object.keys(this.state.players).map((player, index) => {
-                            return (
-                                <p key={index}>{this.state.players[player].playerName}</p>
-                            );
-                        })
-                        */
-                    }
-                </div>
-                {/* Events */}
-                <div>
-                    {
-                        /*
-                        Object.keys(this.state.events).map((event, index) => {
-                            return (
-                            <p key={index}>{this.state.events[event].eventName}</p>
-                            );
-                        })
-                        */
-                    }
-                </div>
-                {/* Tags */}
-                <div>
-                    {
-                        /*
-                        Object.keys(this.state.tags).map((tag, index) => {
-                            return (
-                            <p key={index}>{this.state.tags[tag].tagName}</p>
-                            );
-                        })
-                        */
-                    }
-                </div>
+                {/* <h1>SKYBOUND ARTS</h1> */}
                 {/* Search Input */}
-                <input type = "text" placeholder="Placeholder Search" onChange={this.updateSearch} />
+                <div className="searchContainer">
+                <input id="homeSearch" type = "text" placeholder="Type in a player, character, event, or tag!" onChange={this.updateSearch} />
+                </div>
                 <div>
                 <ul>
                     {

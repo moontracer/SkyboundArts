@@ -1,0 +1,79 @@
+/* Importing Noto Sans JP */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500&display=swap');
+body {
+    background-color: #e2edee;
+}
+/* Main Page CSS */
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#homeSearch {
+    border-style: none none solid none;
+    border-color: #6F7375;
+    background-color: #e2edee;
+    width: 70%;
+    /* CSS Transition for focus */
+    transition: ease, border-color 0.4s;
+    -webkit-transition: ease, border-color 0.4s;
+}
+
+#homeSearch:focus {
+    outline: none;
+    border-color: #69B4D4;
+}
+
+h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.4em;
+}
+
+/* Nav CSS */
+/* Removing underline from weblink */
+.navLink:link {
+    text-decoration: none;
+}
+
+/* Removiung underline from visited link */
+.navLink:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.navLink {
+    color: white;
+    font-size: 1.3em;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+}
+
+/* Site Banner */
+#imgHeadContainer {
+    background-image: url('./images/sbaBanner.png');
+    background-size: cover;
+    height: 16vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#matchFinderText {
+    font-family: arial;
+    color: white;
+    font-weight: 900;
+    font-size: 1.7em;
+    text-shadow: 1px 1px black;
+}

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <APITest />
-      <Report />
+      {/* <Report /> */}
     </div>
   );
 }
