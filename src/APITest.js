@@ -169,7 +169,10 @@ class APITest extends React.Component {
             () => {
                 console.log(this.state.videos);
                 Object.keys(this.state.videos).map((video) => {
-                    this.setState({videoIDs: this.state.videos[video].videoId})
+                    this.setState({videoIDs: this.state.videos[video].videoId},
+                    () => {
+                        this.findVideos();
+                    })
                 })
             })
         }
@@ -181,7 +184,10 @@ class APITest extends React.Component {
             () => {
                 console.log(this.state.videos);
                 Object.keys(this.state.videos).map((video) => {
-                    this.setState({videoIDs: this.state.videos[video].videoId})
+                    this.setState({videoIDs: this.state.videos[video].videoId},
+                    () => {
+                        this.findVideos();
+                    })
                 })
             })
         }        
@@ -220,7 +226,26 @@ class APITest extends React.Component {
                 })
             }), () => {
                 console.log(this.state.tempTags);
+                this.findTagVideos();
             })
+        })
+    }
+    async findTagVideos(){
+        const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.tempTags}`);
+        this.setState({
+            videos: Object.values(vidResponse.data)
+        },
+        () => {
+            console.log(this.state.videos);
+        })
+    }
+    async findVideos(){
+        const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.videoIDs}`);
+        this.setState({
+            videos: Object.values(vidResponse.data)
+        },
+        () => {
+            console.log(this.state.videos);
         })
     }
     render(){
