@@ -1,0 +1,11 @@
+export const charlotta = require("./charlotta.png");
+export const ferry = require("./ferry.png");
+export const gran = require("./gran.png");
+export const katalina = require("./katalina.png");
+export const ladiva = require("./ladiva.png");
+export const lancelot = require("./lancelot.png");
+export const lowain = require("./lowain.png");
+export const metera = require("./metera.png");
+export const percival = require("./percival.png");
+export const vaseraga = require("./vaseraga.png");
+export const zeta = require("./zeta.png");

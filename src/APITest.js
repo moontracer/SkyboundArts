@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { 
+    charlotta
+ } from "./charImages";
 import { PlusCircle, Menu } from "react-feather";
 
 class APITest extends React.Component {
@@ -267,6 +270,7 @@ class APITest extends React.Component {
         })
     }
     render(){
+        const playableCharacters = ["Charlotta", "Ferry", "Gran", "Katalina", "Ladiva", "Lancelot", "Lowain", "Metera", "Percival", "Vaseraga", "Zeta"]
         return (
             <div>
                 <nav>
@@ -293,6 +297,7 @@ class APITest extends React.Component {
                         ))
                     }
                 </ul>
+                <img src={charlotta} />
                 </div>
                     {
                         Object.keys(this.state.videos).map((video, index) => {
