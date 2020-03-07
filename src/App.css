@@ -77,3 +77,13 @@ nav {
     font-size: 1.7em;
     text-shadow: 1px 1px black;
 }
+
+#showNoResults {
+    list-style-type: none;
+    text-align: center;
+    margin-right: 8%;
+}
+
+.showResults {
+    margin-left: 5%;
+}

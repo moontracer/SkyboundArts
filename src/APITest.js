@@ -21,7 +21,8 @@ class APITest extends React.Component {
             eventsQuery: [],
             videoIDs: [],
             searchTags: [],
-            tempTags: []
+            tempTags: [],
+            noResults: false
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
@@ -59,9 +60,25 @@ class APITest extends React.Component {
             this.findEvents();
             if (this.state.search.length < 2){
                 console.log("No Results");
-                this.setState({tempResults: []})
+                this.setState({
+                    tempResults: [],
+                    noResults: true
+                })
             }
-            this.setState({updatedResults: Array.from(new Set(this.state.tempResults))})
+            if (this.state.tempResults.length > 0){
+            this.setState({
+                noResults: false,
+                updatedResults: Array.from(new Set(this.state.tempResults))
+            })
+            }
+            else if (this.state.tempResults.length == 0) {
+                this.setState({
+                    noResults: true
+                },
+                () => {
+                    console.log("Invalid search. Please try again.")
+                })
+            }
         }, 200);
         })
     }
@@ -269,8 +286,10 @@ class APITest extends React.Component {
                 <div>
                 <ul>
                     {
+                        this.state.noResults ? 
+                        <li id="showNoResults">No Results Found</li> :
                         this.state.updatedResults.map(result => (
-                            <li key={result} onClick={this.startSearch}>{result}</li>
+                            <li className="showResults" key={result} onClick={this.startSearch}>{result}</li>
                         ))
                     }
                 </ul>
