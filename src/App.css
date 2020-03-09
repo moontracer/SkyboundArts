@@ -86,4 +86,29 @@ nav {
 
 .showResults {
     margin-left: 5%;
+    list-style-type: none;
+    margin-right: 18%;
+}
+
+.resultData {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#addHeader {
+    text-align: center;
+}
+
+.addForm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.addLabels {
+    align-self: center;
+}
+
+.formInput {
+    margin-bottom: 5%;
 }

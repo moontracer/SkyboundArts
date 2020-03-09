@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import APITest from "./APITest.js";
+import Add from "./Add.js";
 import Report from "./Report.js";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <APITest />
       {/* <Report /> */}
+      <Add />
     </div>
   );
 }

@@ -1,7 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { 
-    charlotta
+    Charlotta,
+    Ferry,
+    Gran,
+    Katalina,
+    Ladiva,
+    Lancelot,
+    Lowain,
+    Metera,
+    Percival,
+    Vaseraga,
+    Zeta
  } from "./charImages";
 import { PlusCircle, Menu } from "react-feather";
 
@@ -270,7 +280,6 @@ class APITest extends React.Component {
         })
     }
     render(){
-        const playableCharacters = ["Charlotta", "Ferry", "Gran", "Katalina", "Ladiva", "Lancelot", "Lowain", "Metera", "Percival", "Vaseraga", "Zeta"]
         return (
             <div>
                 <nav>
@@ -293,11 +302,14 @@ class APITest extends React.Component {
                         this.state.noResults ? 
                         <li id="showNoResults">No Results Found</li> :
                         this.state.updatedResults.map(result => (
-                            <li className="showResults" key={result} onClick={this.startSearch}>{result}</li>
+                            <li className="showResults" key={result} onClick={this.startSearch}>
+                                <p className="resultData">
+                                {result}
+                                </p>
+                            </li>
                         ))
                     }
                 </ul>
-                <img src={charlotta} />
                 </div>
                     {
                         Object.keys(this.state.videos).map((video, index) => {
