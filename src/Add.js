@@ -17,7 +17,7 @@ class Add extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
         const video = {
             "EventName": this.state.eventName,
@@ -29,14 +29,37 @@ class Add extends React.Component {
             "WinnerPlayer": this.state.winnerPlayer,
             "VideoLink": this.state.videoLink
         }
-        // axios.post("http://localhost:5000/api/videos", {video})
-        // .then(function (response){
-        //     console.log(response);
-        // })
-        // .catch(function (error){
-        //     console.log(error);
-        // })
-        axios.post("http://localhost:5000/api/videos", video)
+        const event = {
+            "eventName": this.state.eventName
+        }
+        const player1 = {
+            "playerName": this.state.p1Player
+        }
+        const player2 = {
+            "playerName": this.state.p2Player
+        }
+        await axios.post("http://localhost:5000/api/videos", video)
+        .then(function (response){
+            console.log(response);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+        await axios.post("http://localhost:5000/api/events", event)
+        .then(function (response){
+            console.log(response);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+        await axios.post("http://localhost:5000/api/players", player1)
+        .then(function (response){
+            console.log(response);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+        await axios.post("http://localhost:5000/api/players", player2)
         .then(function (response){
             console.log(response);
         })
