@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { PlusCircle, Menu } from "react-feather";
 
+// Homepage class
 class SkyboundHome extends React.Component {
     constructor(props){
         super(props);
