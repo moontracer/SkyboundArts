@@ -6,28 +6,36 @@ class SkyboundHome extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            //containers for all the database values which are used as search queries
             players: [],
             characters: [],
             tags: [],
             events: [],
+            //boolean that tracks the status of the initial get requests
             loading: true,
+            //state variables used to hold and display the results retrieved from searches
             search: "",
             tempResults: [],
             updatedResults: [],
+            //array of objects that holds all the videos from the searches
             videos: [],
+            //secondary containers for search queries
             playersQuery: [],
             charactersQuery: [],
             tagsQuery: null,
             eventsQuery: [],
+            //holds all the video IDs which are stored when a search is conducted
             videoIDs: [],
             searchTags: [],
             tempTags: [],
+            //controls whether or not results are / aren't displayed depending on if the search produced results
             noResults: false
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
     }
     async componentDidMount(){
+        //on componentMount, get all the players, characters, videos, and tags from the database. Once they are retrieved, load the page.
         const [playerResponse, characterResponse, tagResponse, eventResponse] = await Promise.all([
             axios.get("http://localhost:5000/api/players/"),
             axios.get("http://localhost:5000/api/characters/"),
@@ -50,14 +58,17 @@ class SkyboundHome extends React.Component {
     }
     updateSearch(e){
         this.setState({
+            //Updates value when search is conducted
             search: e.target.value
         },
         () => {
             setTimeout(() =>{
+            //Sees if search result is a character, player, tag, or event.
             this.findPlayers();
             this.findCharacters();
             this.findTags();
             this.findEvents();
+            //if there's less than 2 letters inserted in the searchbar, no results will be shown.
             if (this.state.search.length < 2){
                 console.log("No Results");
                 this.setState({
@@ -65,12 +76,14 @@ class SkyboundHome extends React.Component {
                     noResults: true
                 })
             }
+            //Valid search
             if (this.state.tempResults.length > 0){
             this.setState({
                 noResults: false,
                 updatedResults: Array.from(new Set(this.state.tempResults))
             })
             }
+            //No results - search is invalid
             else if (this.state.tempResults.length === 0) {
                 this.setState({
                     noResults: true
@@ -83,6 +96,7 @@ class SkyboundHome extends React.Component {
         })
     }
     findPlayers(){
+            //Maps through all the players in the database, checking if the entered search result equals a substring from a player entry
             Object.keys(this.state.players).map((player) => {
                 var finalResult = this.state.players[player].playerName;
                 var possibleResult = this.state.players[player].playerName.substring(0, this.state.search.length);
@@ -99,6 +113,7 @@ class SkyboundHome extends React.Component {
             })
     }
     findCharacters(){
+            //Maps through all the characters in the database, checking if the entered search result equals a substring from a character entry
             Object.keys(this.state.characters).map((character) => {
             var finalResult = this.state.characters[character].characterName;
             var possibleResult = this.state.characters[character].characterName.substring(0, this.state.search.length);
@@ -115,6 +130,7 @@ class SkyboundHome extends React.Component {
             })
     }
     findTags(){
+                //Maps through all the tags in the database, checking if the entered search result equals a substring from a tag entry
                 Object.keys(this.state.tags).map((tag) => {
                 var finalResult = this.state.tags[tag].tagName;
                 var possibleResult = this.state.tags[tag].tagName.substring(0, this.state.search.length);
@@ -131,6 +147,7 @@ class SkyboundHome extends React.Component {
             })
     }
     findEvents(){
+                //Maps through all the events in the database, checking if the entered search result equals a substring from an event entry
                 Object.keys(this.state.events).map((event) => {
                 var finalResult = this.state.events[event].eventName;
                 var possibleResult = this.state.events[event].eventName.substring(0, this.state.search.length);
@@ -147,12 +164,8 @@ class SkyboundHome extends React.Component {
             })
     }
     startSearch(e){
-        //initial variables for axios string
-        //axios.get("http://localhost:5000/api/videos/search/")
-        //temporary array created to fetch values from the set
-        //var newArr = Array.from(this.state.updatedResults);
+        //Grabbing the innerText of the clicked query item
         var searchItem = e.target.innerText;
-        //console.log(e.target.innerText);
         //quick check if it's a player
         Object.keys(this.state.players).map((player) => {
             if (this.state.players[player].playerName === searchItem){
@@ -186,7 +199,9 @@ class SkyboundHome extends React.Component {
             return null;
         }) 
     }
+    //Conducts the asynchronous search request. This is performed when a user clicks on a database query (character, player, etc.)
     async searchOptions(playerName = "", characterName = "", eventName = ""){
+        //Default search - performed when a search request is first conducted on the site
         if (this.state.videoIDs.length === 0){
             var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
@@ -203,6 +218,7 @@ class SkyboundHome extends React.Component {
             })
         }
         else {
+            //Search that's conducted when users have already inserted a query which has narrowed down the selection of videos
             videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
                 videos: Object.values(videoResponse.data)
@@ -219,29 +235,8 @@ class SkyboundHome extends React.Component {
         }        
     }
     async tagSearch(){
+        //This search is ran when users click on a tag from the database and a query hasn't been performed yet
         const tagSearchResponse = await axios.get(`http://localhost:5000/api/mapvideotag/search/?searchTagID=${this.state.tagsQuery}`);
-        // this.setState({
-        //     searchTags: Object.values(tagSearchResponse.data)
-        // },
-        // () => {
-        //     //console.log(this.state.searchTags);
-        //     // Object.keys(this.state.searchTags).map((tag) => {
-        //     //     this.setState({videoIDs: this.state.searchTags[tag].videoId})
-        //     // },
-        //     // () => {
-        //     //     console.log(this.state.videoIDs);
-        //     // })
-        //     //Create a temp search tag array, push all of the videoIDs into it
-        //     //then, create a new array and utilize it in setstate of videoIDs
-        //     var tempArray = [];
-        //     Object.keys(this.state.searchTags).map((tag) => {
-        //         tempArray.push(this.state.searchTags[tag].videoId);
-        //         //utilize tempArray in setState
-        //         console.log(tempArray);
-        //     },
-        //     () => {
-        //     })
-        // })
         this.setState({
             searchTags: Object.values(tagSearchResponse.data)
         },
@@ -257,6 +252,7 @@ class SkyboundHome extends React.Component {
         })
     }
     async findTagVideos(){
+        //This search is done after tagSearch() in order to obtain the IDs of the respective videos that had that tag
         const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.tempTags}`);
         this.setState({
             videos: Object.values(vidResponse.data)
@@ -266,6 +262,7 @@ class SkyboundHome extends React.Component {
         })
     }
     async findVideos(){
+        //This is ran when the user attempts to search for a video by its ID.
         const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.videoIDs}`);
         this.setState({
             videos: Object.values(vidResponse.data)
@@ -286,8 +283,6 @@ class SkyboundHome extends React.Component {
                 <div id="imgHeadContainer">
                     <p id="matchFinderText">Match Finder</p>
                 </div>
-                {/* <h1>SKYBOUND ARTS</h1> */}
-                {/* Search Input */}
                 <div className="searchContainer">
                 <input id="homeSearch" type = "text" placeholder="Type in a player, character, event, or tag!" onChange={this.updateSearch} />
                 </div>
@@ -310,16 +305,14 @@ class SkyboundHome extends React.Component {
                         Object.keys(this.state.videos).map((video, index) => {
                             return (
                             <div key={index}>
-                            <p>{this.state.videos[video].eventName}</p>
-                            <p>{this.state.videos[video].p1Character}</p>
-                            <p>{this.state.videos[video].p2Character}</p>
-                            {/* Won't be in final CSS but here for testing */}
-                            <p>{this.state.videos[video].winnerCharacter}</p>
-                            <p>{this.state.videos[video].p1Player}</p>
-                            <p>{this.state.videos[video].p2Player}</p>
-                            {/* Won't be in final CSS but here for testing */}
-                            <p>{this.state.videos[video].winnerPlayer}</p>
-                            <a href={this.state.videos[video].videoLink}>VOD</a>
+                            <p>Event: {this.state.videos[video].eventName}</p>
+                            <p>P1 Character: {this.state.videos[video].p1Character}</p>
+                            <p>P2 Character: {this.state.videos[video].p2Character}</p>
+                            <p>Winnner Character: {this.state.videos[video].winnerCharacter}</p>
+                            <p>P1 Player: {this.state.videos[video].p1Player}</p>
+                            <p>P2 Player: {this.state.videos[video].p2Player}</p>
+                            <p>Winner Player: {this.state.videos[video].winnerPlayer}</p>
+                            <a href={this.state.videos[video].videoLink}>Video Link</a>
                             </div>
                             );
                         })
