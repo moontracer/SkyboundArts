@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-class Add extends React.Component {
+class AddVideo extends React.Component {
     constructor(props){
         super(props);
+        //These state variables are containers for the values inserted when adding videos
         this.state = {
             eventName: "",
             p1Player: "",
@@ -29,6 +30,9 @@ class Add extends React.Component {
             "WinnerPlayer": this.state.winnerPlayer,
             "VideoLink": this.state.videoLink
         }
+        /*
+        The event, player1, and player2 constants are used for the axios posts after a video is created, adding the search params to the database.
+        */
         const event = {
             "eventName": this.state.eventName
         }
@@ -77,6 +81,7 @@ class Add extends React.Component {
         return (
             <div>
                 <h1 id="addHeader">Upload Video</h1>
+                {/* Form used to submit video content */}
                 <form method="POST" className="addForm" onSubmit={this.handleSubmit}>
                 <input className="formInput" type="text" value={this.state.eventName} name="eventName" placeholder="Event Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p1Player} name="p1Player" placeholder="Player 1 Name" onChange={this.handleChange} />
@@ -131,4 +136,4 @@ class Add extends React.Component {
     }
 }
 
-export default Add;
+export default AddVideo;

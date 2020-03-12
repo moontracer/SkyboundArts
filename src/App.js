@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import APITest from "./APITest.js";
-import Add from "./Add.js";
-import Report from "./Report.js";
+import SkyboundHome from "./SkyboundHome.js";
+import AddVideo from "./AddVideo.js";
 
 function App() {
   return (
     <div className="App">
-      <APITest />
-      {/* <Report /> */}
-      <Add />
+      <SkyboundHome />
+      <AddVideo />
     </div>
   );
 }

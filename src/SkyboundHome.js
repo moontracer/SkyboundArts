@@ -1,21 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { 
-    Charlotta,
-    Ferry,
-    Gran,
-    Katalina,
-    Ladiva,
-    Lancelot,
-    Lowain,
-    Metera,
-    Percival,
-    Vaseraga,
-    Zeta
- } from "./charImages";
 import { PlusCircle, Menu } from "react-feather";
 
-class APITest extends React.Component {
+class SkyboundHome extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -84,7 +71,7 @@ class APITest extends React.Component {
                 updatedResults: Array.from(new Set(this.state.tempResults))
             })
             }
-            else if (this.state.tempResults.length == 0) {
+            else if (this.state.tempResults.length === 0) {
                 this.setState({
                     noResults: true
                 },
@@ -104,10 +91,11 @@ class APITest extends React.Component {
                     search: this.state.search.toLocaleLowerCase()
                 }, () => {
                     possibleResult = possibleResult.toLocaleLowerCase();
-                    if (possibleResult == this.state.search){
-                        this.setState({tempResults: this.state.tempResults.concat(finalResult)})
+                    if (possibleResult === this.state.search){
+                        return this.setState({tempResults: this.state.tempResults.concat(finalResult)})
                     }
                     })
+                return null;
             })
     }
     findCharacters(){
@@ -119,10 +107,11 @@ class APITest extends React.Component {
                 search: this.state.search.toLocaleLowerCase()
             }, () => {
                 possibleResult = possibleResult.toLocaleLowerCase();
-                if (possibleResult == this.state.search){
-                    this.setState({tempResults: this.state.tempResults.concat(finalResult)})
+                if (possibleResult === this.state.search){
+                    return this.setState({tempResults: this.state.tempResults.concat(finalResult)})
                 }
             })
+                return null;
             })
     }
     findTags(){
@@ -134,10 +123,11 @@ class APITest extends React.Component {
                     search: this.state.search.toLocaleLowerCase()
                 }, () => {
                     possibleResult = possibleResult.toLocaleLowerCase();
-                    if (possibleResult == this.state.search){
-                        this.setState({tempResults: this.state.tempResults.concat(finalResult)})
+                    if (possibleResult === this.state.search){
+                        return this.setState({tempResults: this.state.tempResults.concat(finalResult)})
                     }
                 })
+                return null;
             })
     }
     findEvents(){
@@ -149,10 +139,11 @@ class APITest extends React.Component {
                     search: this.state.search.toLocaleLowerCase()
                 }, () => {
                     possibleResult = possibleResult.toLocaleLowerCase();
-                    if (possibleResult == this.state.search){
-                        this.setState({tempResults: this.state.tempResults.concat(finalResult)})
+                    if (possibleResult === this.state.search){
+                        return this.setState({tempResults: this.state.tempResults.concat(finalResult)})
                     }
                 })
+                return null;
             })
     }
     startSearch(e){
@@ -164,35 +155,39 @@ class APITest extends React.Component {
         //console.log(e.target.innerText);
         //quick check if it's a player
         Object.keys(this.state.players).map((player) => {
-            if (this.state.players[player].playerName == searchItem){
-                this.searchOptions(this.state.players[player].playerName, "", "");
+            if (this.state.players[player].playerName === searchItem){
+                return this.searchOptions(this.state.players[player].playerName, "", "");
             }
+            return null;
         })
        //quick check if it's a character
         Object.keys(this.state.characters).map((character) => {
-            if (this.state.characters[character].characterName == searchItem){
-                this.searchOptions("", this.state.characters[character].characterName, "");
+            if (this.state.characters[character].characterName === searchItem){
+                return this.searchOptions("", this.state.characters[character].characterName, "");
             }
+            return null;
         })
         //quick check if it's a tag
         Object.keys(this.state.tags).map((tag) => {
-            if(this.state.tags[tag].tagName == searchItem){
+            if(this.state.tags[tag].tagName === searchItem){
                 //Haven't checked for existing IDs with tags yet
-                this.setState({tagsQuery: this.state.tags[tag].tagId},
+                return this.setState({tagsQuery: this.state.tags[tag].tagId},
                 () => {
                     this.tagSearch();
                 })
             }
+            return null;
         })
         //quick check if it's an event
         Object.keys(this.state.events).map((event) => {
-            if (this.state.events[event].eventName == searchItem){
-                this.searchOptions("", "", this.state.events[event].eventName);
+            if (this.state.events[event].eventName === searchItem){
+                return this.searchOptions("", "", this.state.events[event].eventName);
             }
+            return null;
         }) 
     }
     async searchOptions(playerName = "", characterName = "", eventName = ""){
-        if (this.state.videoIDs.length == 0){
+        if (this.state.videoIDs.length === 0){
             var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
                 videos: Object.values(videoResponse.data)
@@ -200,7 +195,7 @@ class APITest extends React.Component {
             () => {
                 console.log(this.state.videos);
                 Object.keys(this.state.videos).map((video) => {
-                    this.setState({videoIDs: this.state.videos[video].videoId},
+                    return this.setState({videoIDs: this.state.videos[video].videoId},
                     () => {
                         this.findVideos();
                     })
@@ -208,14 +203,14 @@ class APITest extends React.Component {
             })
         }
         else {
-            var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+            videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
                 videos: Object.values(videoResponse.data)
             },
             () => {
                 console.log(this.state.videos);
                 Object.keys(this.state.videos).map((video) => {
-                    this.setState({videoIDs: this.state.videos[video].videoId},
+                    return this.setState({videoIDs: this.state.videos[video].videoId},
                     () => {
                         this.findVideos();
                     })
@@ -334,4 +329,4 @@ class APITest extends React.Component {
     }
 }
 
-export default APITest;
+export default SkyboundHome;

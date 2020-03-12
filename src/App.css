@@ -70,6 +70,7 @@ nav {
     justify-content: center;
 }
 
+/* Site Banner Text */
 #matchFinderText {
     font-family: arial;
     color: white;
@@ -78,11 +79,15 @@ nav {
     text-shadow: 1px 1px black;
 }
 
+/* Homepage Results (Hidden) */
+
 #showNoResults {
     list-style-type: none;
     text-align: center;
     margin-right: 8%;
 }
+
+/* Homepage Results (Displayed) */
 
 .showResults {
     margin-left: 5%;
@@ -94,6 +99,8 @@ nav {
     margin-top: 3%;
     margin-bottom: 3%;
 }
+
+/* Component css for adding videos */
 
 #addHeader {
     text-align: center;

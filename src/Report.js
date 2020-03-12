@@ -8,34 +8,10 @@ class Report extends React.Component {
     }
     handleSubmit(e){
     e.preventDefault();
+    // Retrieving the innerHTML contents before sending them in an axios post. After the post is sent, the contents of the form are reset.
     const name = document.getElementById('name');
     const email = document.getElementById('email');
     const message = document.getElementById('message');
-    // axios({
-    //     "method": "POST",
-    //     "url": "http://localhost:4000/send",
-    //     "data": {
-    //         "name": name,
-    //         "email": email,
-    //         "message": message
-    //     }
-    // }).then((response)=> {
-    //     if(response.data.msg === 'success'){
-    //         alert("Message Sent.");
-    //         this.resetForm()
-    //     } else if (response.data.msg === 'fail'){
-    //         alert("Message failed to send.")
-    //     }
-    // })
-    // axios.post("http://localhost:4000/send", {
-    // })
-    // .then(function(response){
-    //     console.log(response);
-    // })
-    // .cach (function(error){
-    //     console.log(error);
-    // })
-    // WORKING AXIOS CALL!!
     axios.post("http://localhost:4000/send", {
         name: name.value,
         email: email.value,
