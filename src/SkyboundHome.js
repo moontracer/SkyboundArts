@@ -211,12 +211,6 @@ class SkyboundHome extends React.Component {
             },
             () => {
                 console.log(this.state.videos);
-                Object.keys(this.state.videos).map((video) => {
-                    return this.setState({videoIDs: this.state.videos[video].videoId},
-                    () => {
-                        this.findVideos();
-                    })
-                })
             })
         }
         else {
@@ -307,7 +301,7 @@ class SkyboundHome extends React.Component {
                         Object.keys(this.state.videos).map((video, index) => {
                             return (
                             <div key={index}>
-                            <p id="vidEventName">{this.state.videos[video].eventName}</p>
+                            <p id="vidEventName" onClick={this.startSearch}>{this.state.videos[video].eventName}</p>
                             <div id="videoContainer">
                             <img className="vidImage" src={CharImgs[this.state.videos[video].p1Character]} alt={CharImgs[this.state.videos[video].p1Character]} />
                             <p>{this.state.videos[video].p1Player}</p>
