@@ -137,4 +137,19 @@ nav {
 
 #vidEventName {
     margin-left: 6%;
+    margin-top: 3%;
+    font-weight: bold;
+}
+
+.vidLink {
+    color: #4D97E4;
+}
+
+.vidLink:visited {
+    text-decoration: none;
+    color: #4D97E4;
+}
+
+.vidLink:link {
+    text-decoration: none;
 }

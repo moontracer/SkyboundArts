@@ -278,7 +278,7 @@ class SkyboundHome extends React.Component {
             <div>
                 <nav>
                     <a className="navLink" href="https://google.com">SKYBOUND ARTS</a>
-                    <PlusCircle />
+                    <PlusCircle color="white" />
                     <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
                     {/* <Menu /> */}
                 </nav>
@@ -314,7 +314,7 @@ class SkyboundHome extends React.Component {
                             <p>VS</p>
                             <img className="vidImage" src={CharImgs[this.state.videos[video].p2Character]} alt={CharImgs[this.state.videos[video].p2Character]} />
                             <p>{this.state.videos[video].p2Player}</p>
-                            <a href={this.state.videos[video].videoLink}>
+                            <a className="vidLink" href={this.state.videos[video].videoLink}>
                                 <PlayCircle />
                             </a>
                             </div>
