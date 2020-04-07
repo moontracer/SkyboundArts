@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { PlusCircle, Menu } from "react-feather";
+import { PlusCircle, PlayCircle } from "react-feather";
+import * as CharImgs from "./charImages";
 
 // Homepage class
 class SkyboundHome extends React.Component {
@@ -279,7 +280,7 @@ class SkyboundHome extends React.Component {
                     <a className="navLink" href="https://google.com">SKYBOUND ARTS</a>
                     <PlusCircle />
                     <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
-                    <Menu />
+                    {/* <Menu /> */}
                 </nav>
                 <div id="imgHeadContainer">
                     <p id="matchFinderText">Match Finder</p>
@@ -306,14 +307,17 @@ class SkyboundHome extends React.Component {
                         Object.keys(this.state.videos).map((video, index) => {
                             return (
                             <div key={index}>
-                            <p>Event: {this.state.videos[video].eventName}</p>
-                            <p>P1 Character: {this.state.videos[video].p1Character}</p>
-                            <p>P2 Character: {this.state.videos[video].p2Character}</p>
-                            <p>Winnner Character: {this.state.videos[video].winnerCharacter}</p>
-                            <p>P1 Player: {this.state.videos[video].p1Player}</p>
-                            <p>P2 Player: {this.state.videos[video].p2Player}</p>
-                            <p>Winner Player: {this.state.videos[video].winnerPlayer}</p>
-                            <a href={this.state.videos[video].videoLink}>Video Link</a>
+                            <p id="vidEventName">{this.state.videos[video].eventName}</p>
+                            <div id="videoContainer">
+                            <img className="vidImage" src={CharImgs[this.state.videos[video].p1Character]} alt={CharImgs[this.state.videos[video].p1Character]} />
+                            <p>{this.state.videos[video].p1Player}</p>
+                            <p>VS</p>
+                            <img className="vidImage" src={CharImgs[this.state.videos[video].p2Character]} alt={CharImgs[this.state.videos[video].p2Character]} />
+                            <p>{this.state.videos[video].p2Player}</p>
+                            <a href={this.state.videos[video].videoLink}>
+                                <PlayCircle />
+                            </a>
+                            </div>
                             </div>
                             );
                         })

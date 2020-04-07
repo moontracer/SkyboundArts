@@ -20,6 +20,8 @@ body {
     /* CSS Transition for focus */
     transition: ease, border-color 0.4s;
     -webkit-transition: ease, border-color 0.4s;
+    height: 6vh;
+    font-size: 15px;
 }
 
 #homeSearch:focus {
@@ -90,6 +92,7 @@ nav {
 /* Homepage Results (Displayed) */
 
 .showResults {
+    margin-top: 2%;
     margin-left: 5%;
     list-style-type: none;
     margin-right: 18%;
@@ -118,4 +121,20 @@ nav {
 
 .formInput {
     margin-bottom: 5%;
+}
+
+/* Video Container CSS */
+#videoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.vidImage {
+    height: 9vh;
+}
+
+#vidEventName {
+    margin-left: 6%;
 }
