@@ -138,6 +138,15 @@ nav {
     border-color: #69B4D4;
 }
 
+.addSelect {
+    width: 40%;
+    box-shadow: 1px 1px;
+    color: #6F7375;
+    font-weight: 600;;
+    background: none;
+    margin: 0 auto;
+}
+
 /* Video Container CSS */
 #videoContainer {
     display: flex;

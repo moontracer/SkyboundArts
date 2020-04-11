@@ -87,7 +87,7 @@ class AddVideo extends React.Component {
                 <input className="formInput" type="text" value={this.state.p1Player} name="p1Player" placeholder="Player 1 Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p2Player} name="p2Player" onChange={this.handleChange} placeholder="Player 2 Name" />
                 <label className="addLabels" htmlFor="P1Character">Select P1's Character:</label>
-                <select name="p1Character" id="P1Character" onChange={this.handleChange} value={this.state.p1Character}>
+                <select className="addSelect" name="p1Character" id="P1Character" onChange={this.handleChange} value={this.state.p1Character}>
                     <option>Select an option!</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Ferry">Ferry</option>
@@ -102,7 +102,7 @@ class AddVideo extends React.Component {
                     <option value="Zeta">Zeta</option>
                 </select>
                 <label className="addLabels" htmlFor="P2Character">Select P2's Character:</label>
-                <select name="p2Character" value={this.state.p2Character} onChange={this.handleChange} id="P2Character">
+                <select className="addSelect" name="p2Character" value={this.state.p2Character} onChange={this.handleChange} id="P2Character">
                     <option>Select an option!</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Ferry">Ferry</option>
