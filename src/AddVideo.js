@@ -88,7 +88,7 @@ class AddVideo extends React.Component {
                 <input className="formInput" type="text" value={this.state.p2Player} name="p2Player" onChange={this.handleChange} placeholder="Player 2 Name" />
                 <label className="addLabels" htmlFor="P1Character">Select P1's Character:</label>
                 <select name="p1Character" id="P1Character" onChange={this.handleChange} value={this.state.p1Character}>
-                    <option>Default - Please select a different option!</option>
+                    <option>Select an option!</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Ferry">Ferry</option>
                     <option value="Gran">Gran</option>
@@ -103,7 +103,7 @@ class AddVideo extends React.Component {
                 </select>
                 <label className="addLabels" htmlFor="P2Character">Select P2's Character:</label>
                 <select name="p2Character" value={this.state.p2Character} onChange={this.handleChange} id="P2Character">
-                    <option>Default - Please select a different option!</option>
+                    <option>Select an option!</option>
                     <option value="Charlotta">Charlotta</option>
                     <option value="Ferry">Ferry</option>
                     <option value="Gran">Gran</option>
@@ -116,18 +116,27 @@ class AddVideo extends React.Component {
                     <option value="Vaseraga">Vaseraga</option>
                     <option value="Zeta">Zeta</option>
                 </select>
-                <label htmlFor="winningCharacter" className="addLabels">Which character won the match?</label>
-                <select name="winnerCharacter" value={this.state.winnerCharacter} onChange={this.handleChange} id="winningCharacter">
+                <p className="addLabels">Which character won the match?</p>
+                {/* <select name="winnerCharacter" value={this.state.winnerCharacter} onChange={this.handleChange} id="winningCharacter">
+                    <option defaultValue="selected">Select an option!</option>
                     <option value={this.state.p1Character}>Player 1's Character</option>
                     <option value={this.state.p2Character}>Player 2's Character</option>
-                </select>
-                <label className="addLabels" htmlFor="winningPlayer">Which player won the match?</label>
-                <select name="winnerPlayer" value={this.state.winnerPlayer} onChange={this.handleChange} id="winnigPlayer">
-                    <option>Default - please select a different option!</option>
+                </select> */}
+                <input type="radio" id="p1Character" name="winnerCharacter" value={this.state.p1Character} onClick={this.handleChange} />
+                <label htmlFor="p1Character">Player 1's Character</label>
+                <input type="radio" id="p2Character" name="winnerCharacter" value={this.state.p2Character} onClick={this.handleChange} />
+                <label htmlFor="p2Character">Player 2's Character</label>
+                <p className="addLabels">Which player won the match?</p>
+                {/* <select name="winnerPlayer" value={this.state.winnerPlayer} onChange={this.handleChange} id="winningPlayer">
+                    <option>Select an option!</option>
                     <option value={this.state.p1Player}>Player 1</option>
                     <option value={this.state.p2Player}>Player 2</option>
-                </select>
-                <input type="text" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} />
+                </select> */}
+                <input type="radio" id="p1Player" name="winnerPlayer" value={this.state.p1Player} onClick={this.handleChange} />
+                <label htmlFor="p1Player">Player 1</label>
+                <input type="radio" id="p2Player" name="winnerPlayer" value={this.state.p2Player} onClick={this.handleChange} />
+                <label htmlFor="p2Player">Player 2</label>
+                <input type="text" className="formInput" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} />
                 <input type="submit" value="Add Video" />
                 <button>Cancel</button>
                 </form>

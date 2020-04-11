@@ -35,6 +35,7 @@ class SkyboundHome extends React.Component {
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
+        this.startImageSearch = this.startImageSearch.bind(this);
     }
     async componentDidMount(){
         //on componentMount, get all the players, characters, videos, and tags from the database. Once they are retrieved, load the page.
@@ -201,6 +202,17 @@ class SkyboundHome extends React.Component {
             return null;
         }) 
     }
+    //This startImageSearch is conducted when character images are clicked on
+    startImageSearch(e){
+        var searchItem = e.target.alt;
+        //verifying that it's a character
+        Object.keys(this.state.characters).map((character) => {
+            if (this.state.characters[character].characterName === searchItem){
+                return this.searchOptions("", this.state.characters[character].characterName, "");
+            }
+            return null;
+        })
+    }
     //Conducts the asynchronous search request. This is performed when a user clicks on a database query (character, player, etc.)
     async searchOptions(playerName = "", characterName = "", eventName = ""){
         //Default search - performed when a search request is first conducted on the site
@@ -303,11 +315,11 @@ class SkyboundHome extends React.Component {
                             <div key={index}>
                             <p id="vidEventName" onClick={this.startSearch}>{this.state.videos[video].eventName}</p>
                             <div id="videoContainer">
-                            <img className="vidImage" src={CharImgs[this.state.videos[video].p1Character]} alt={CharImgs[this.state.videos[video].p1Character]} />
-                            <p>{this.state.videos[video].p1Player}</p>
+                            <img onClick={this.startImageSearch} className="vidImage" src={CharImgs[this.state.videos[video].p1Character]} alt={this.state.videos[video].p1Character} />
+                            <p onClick={this.startSearch}>{this.state.videos[video].p1Player}</p>
                             <p>VS</p>
-                            <img className="vidImage" src={CharImgs[this.state.videos[video].p2Character]} alt={CharImgs[this.state.videos[video].p2Character]} />
-                            <p>{this.state.videos[video].p2Player}</p>
+                            <img onClick={this.startImageSearch} className="vidImage" src={CharImgs[this.state.videos[video].p2Character]} alt={this.state.videos[video].p2Character} />
+                            <p onClick={this.startSearch}>{this.state.videos[video].p2Player}</p>
                             <a className="vidLink" href={this.state.videos[video].videoLink}>
                                 <PlayCircle />
                             </a>

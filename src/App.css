@@ -121,6 +121,21 @@ nav {
 
 .formInput {
     margin-bottom: 5%;
+    margin-left: 3%;
+    border-style: none none solid none;
+    background-color: #E2EDEE;
+    border-color: #6F7375;
+    width: 80%;
+    height: 3vh;
+    font-size: 15px;
+    /* CSS Transition for focus */
+    transition: ease, border-color 0.4s;
+    -webkit-transition: ease, border-color 0.4s;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: #69B4D4;
 }
 
 /* Video Container CSS */
