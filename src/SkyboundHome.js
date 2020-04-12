@@ -1,5 +1,6 @@
 import React from "react";
 import { PlusCircle} from "react-feather";
+import { Link } from "react-router-dom";
 
 // Homepage class
 class SkyboundHome extends React.Component {
@@ -7,8 +8,8 @@ class SkyboundHome extends React.Component {
         return (
             <div>
                 <nav>
-                    <a className="navLink" href="https://google.com">SKYBOUND ARTS</a>
-                    <PlusCircle color="white" />
+                    <Link className="navLink" to="/">SKYBOUND ARTS</Link>
+                    <Link to="/add"><PlusCircle color="white" /></Link>
                     <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
                     {/* <Menu /> */}
                 </nav>
