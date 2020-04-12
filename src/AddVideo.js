@@ -17,6 +17,7 @@ class AddVideo extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
     async handleSubmit(e){
         e.preventDefault();
@@ -77,12 +78,15 @@ class AddVideo extends React.Component {
             [e.target.name]: value
         })
     }
+    resetForm(){
+        window.location.reload();
+    }
     render(){
         return (
             <div>
                 <h1 id="addHeader">Upload Video</h1>
                 {/* Form used to submit video content */}
-                <form method="POST" className="addForm" onSubmit={this.handleSubmit}>
+                <form id="vidForm" method="POST" className="addForm" onSubmit={this.handleSubmit}>
                 <input className="formInput" type="text" value={this.state.eventName} name="eventName" placeholder="Event Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p1Player} name="p1Player" placeholder="Player 1 Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p2Player} name="p2Player" onChange={this.handleChange} placeholder="Player 2 Name" />
@@ -122,24 +126,28 @@ class AddVideo extends React.Component {
                     <option value={this.state.p1Character}>Player 1's Character</option>
                     <option value={this.state.p2Character}>Player 2's Character</option>
                 </select> */}
+                <div className="formRadioContainer">
                 <input type="radio" id="p1Character" name="winnerCharacter" value={this.state.p1Character} onClick={this.handleChange} />
                 <label htmlFor="p1Character">Player 1's Character</label>
                 <input type="radio" id="p2Character" name="winnerCharacter" value={this.state.p2Character} onClick={this.handleChange} />
                 <label htmlFor="p2Character">Player 2's Character</label>
+                </div>
                 <p className="addLabels">Which player won the match?</p>
                 {/* <select name="winnerPlayer" value={this.state.winnerPlayer} onChange={this.handleChange} id="winningPlayer">
                     <option>Select an option!</option>
                     <option value={this.state.p1Player}>Player 1</option>
                     <option value={this.state.p2Player}>Player 2</option>
                 </select> */}
+                <div className="formRadioContainer">
                 <input type="radio" id="p1Player" name="winnerPlayer" value={this.state.p1Player} onClick={this.handleChange} />
                 <label htmlFor="p1Player">Player 1</label>
                 <input type="radio" id="p2Player" name="winnerPlayer" value={this.state.p2Player} onClick={this.handleChange} />
                 <label htmlFor="p2Player">Player 2</label>
+                </div>
                 <input type="text" className="formInput" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} />
-                <input type="submit" value="Add Video" />
-                <button>Cancel</button>
+                <input id="formSubmit" type="submit" value="Add Video" />
                 </form>
+                <button id="formReset"  onClick={this.resetForm}>Reset Form</button>
             </div>
         )
     }

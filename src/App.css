@@ -177,3 +177,27 @@ nav {
 .vidLink:link {
     text-decoration: none;
 }
+
+.formRadioContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#formSubmit {
+    width: 48%;
+    margin: 0 auto;
+    background-color: #69B4D4;
+    border: none;
+    color: white;
+    text-align: center;
+}
+
+#formReset {
+    width: 48%;
+    background-color: #3693bb;
+    color: white;
+    display: block;
+    margin: 4% auto;
+}

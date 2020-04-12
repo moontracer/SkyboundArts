@@ -26,7 +26,6 @@ class Report extends React.Component {
     console.log(message.value);
     }
     resetForm(){
-        document.getElementById('mailForm').reset();
     }
     render(){
         return (
