@@ -201,3 +201,38 @@ nav {
     display: block;
     margin: 4% auto;
 }
+
+/* Potential CSS Things To Do:
+    Scale nav font so it looks a lot larger on desktop view, currently the text and icons both look rather small.
+
+    Increase Viewport Height for Image Banner container - 25vh looks great. I wonder if I can do that responsively, we'll see.
+
+    Another thing apparent to me is that there isn't much space between the event banner's bottom and the search bar. I wonder if I can have an increased
+    margin bottom when the site is used by larger devices.
+
+    Are No Results Found, Match Finder, etc. not centered?!?
+
+    ....Do I need something to explain the site's structure for those who are unfamiliar with GBVS and how it works?
+    This is a question for the webdev discord.
+        Maybe a little About button?
+            Adding an About button or a How To Use button somewhere on the main page of my site because I imagine that it'd be hard for people who don't have the context of my site's purpose to figure out how to utilize it. 
+
+    Search Results should be aligned below search bar, Search bar take up less horizontal space and should be larger.
+
+    Maybe image banner doesn't have to be so much horizontal sapce too?
+
+    Search Results & Click Results:
+
+    I'm thinking that maybe when a search result is clicked, the following should happen:
+    
+    Search Bar Content changes to tag name - for example me is replaced with Metera.
+    Search Result section becomes hidden until user types in Search Bar again.
+    Click Result content is displayed.
+
+    Click Results Formatting:
+    Character images, names, icon, VS, and Event Name should scale, they look wayyyy too small on desktop.
+    Event Name should be lined up with the tip edge of search bar, the content is too far out.
+    
+    That's good enough for now imo.
+
+*/
