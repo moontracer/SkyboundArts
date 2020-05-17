@@ -35,6 +35,10 @@ h1 {
 }
 
 /* Nav CSS */
+.homeDiv {
+    margin-bottom: 3%;
+}
+
 /* Removing underline from weblink */
 .navLink:link {
     text-decoration: none;
@@ -235,4 +239,34 @@ nav {
     
     That's good enough for now imo.
 
+
+    Scaling from mobile to desktop:
+    Use media queries
+*/
+
+/* Media query for desktops */
+@media (min-width: 992px){
+    /* Scaling nav text for desktop */
+    .navLink {
+        font-size: 2.0em;
+    }
+    #imgHeadContainer {
+        height: 28vh;
+    }
+}
+
+
+/* 
+    I think that I'm going to have to approach
+    scaling the icon in a manner that's rather difficult.
+    This is going to be done by using componentDidMount alongside state.
+    On component mount, I'm gonna have to get screen width then from there I have to
+    scale accordingly w/ a state variable
+
+    This is kinda the basic premise of how you'd accomplish that.
+
+    The code for this has been written! Mess with like actual screen resolutions sometime later.
+    Think I might have to write a ternary for it.
+
+    4% margin bottom?
 */
