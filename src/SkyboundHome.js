@@ -1,5 +1,5 @@
 import React from "react";
-import { PlusCircle} from "react-feather";
+import { PlusCircle, HelpCircle} from "react-feather";
 import { Link } from "react-router-dom";
 
 // Homepage class
@@ -18,7 +18,8 @@ class SkyboundHome extends React.Component {
             <div className="homeDiv">
                 <nav>
                     <Link className="navLink" to="/">SKYBOUND ARTS</Link>
-                    <Link to="/add"><PlusCircle color="white" size={this.state.deviceWidth / 28} /></Link>
+                    <Link to="/add"><PlusCircle color="white" size={30} /></Link>
+                    <HelpCircle color="white" size={30} />
                     <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
                     {/* <Menu /> */}
                 </nav>

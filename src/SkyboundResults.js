@@ -167,7 +167,7 @@ class SkyboundResults extends React.Component {
     }
     startSearch(e){
         //Grabbing the innerText of the clicked query item
-        var searchItem = e.target.innerText;
+        var searchItem = e.target.innerText;        
         //quick check if it's a player
         Object.keys(this.state.players).map((player) => {
             if (this.state.players[player].playerName === searchItem){

@@ -229,14 +229,6 @@ nav {
 
     I'm thinking that maybe when a search result is clicked, the following should happen:
     
-    Search Bar Content changes to tag name - for example me is replaced with Metera.
-    Search Result section becomes hidden until user types in Search Bar again.
-    Click Result content is displayed.
-
-    Click Results Formatting:
-    Character images, names, icon, VS, and Event Name should scale, they look wayyyy too small on desktop.
-    Event Name should be lined up with the tip edge of search bar, the content is too far out.
-    
     That's good enough for now imo.
 
 
@@ -252,6 +244,18 @@ nav {
     }
     #imgHeadContainer {
         height: 28vh;
+    }
+    #matchFinderText {
+        font-size: 2.5em;
+    }
+    #showNoResults {
+        margin-right: 0%;
+        font-size: 1.9em;
+    }
+    /* Altering search bar */
+    #homeSearch {
+        width: 40%;
+        font-size: 1.7em;
     }
 }
 
@@ -269,4 +273,22 @@ nav {
     Think I might have to write a ternary for it.
 
     4% margin bottom?
+
+    Work on adjusting icon in general in terms of properly aligning it.
+    That's going to be the hardest part free. If I had an icon for SBA, perhaps the spacing would be easier.
+    Worst case scenario I can add a ? alongside the help to make the spacing look better
+    (especially because this is something I planned on doing!)
+
+    Skyfarer Battle Logs?
+    Looking at noresults lining.
+    
+    Change horizontal bar width and font size of the text in search.
+
+    When result is clicked on:
+        Search Result section becomes hidden until user types in Search Bar again.
+    Click Result content is displayed.
+
+    Click Results Formatting:
+    Character images, names, icon, VS, and Event Name should scale, they look wayyyy too small on desktop.
+    Event Name should be lined up with the tip edge of search bar, the content is too far out.
 */
