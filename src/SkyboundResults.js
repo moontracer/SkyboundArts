@@ -30,7 +30,9 @@ class SkyboundResults extends React.Component {
             searchTags: [],
             tempTags: [],
             //controls whether or not results are / aren't displayed depending on if the search produced results
-            noResults: false
+            noResults: false,
+            //toggle that hides result after user click
+            resultClicked: false
         }
         this.updateSearch = this.updateSearch.bind(this);
         this.startSearch = this.startSearch.bind(this);
@@ -61,7 +63,8 @@ class SkyboundResults extends React.Component {
     updateSearch(e){
         this.setState({
             //Updates value when search is conducted
-            search: e.target.value
+            search: e.target.value,
+            resultClicked: false
         },
         () => {
             setTimeout(() =>{
@@ -167,7 +170,11 @@ class SkyboundResults extends React.Component {
     }
     startSearch(e){
         //Grabbing the innerText of the clicked query item
-        var searchItem = e.target.innerText;        
+        var searchItem = e.target.innerText;
+        //setting the state of the result to hide clicked results
+        this.setState({
+            resultClicked: true
+        })     
         //quick check if it's a player
         Object.keys(this.state.players).map((player) => {
             if (this.state.players[player].playerName === searchItem){
@@ -290,7 +297,7 @@ class SkyboundResults extends React.Component {
                         this.state.noResults ? 
                         <li id="showNoResults">No Results Found</li> :
                         this.state.updatedResults.map(result => (
-                            <li className="showResults" key={result} onClick={this.startSearch}>
+                            <li className={this.state.resultClicked ? "hideResults" : "showResults"} key={result} onClick={this.startSearch}>
                                 <p className="resultData">
                                 {result}
                                 </p>
