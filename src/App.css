@@ -263,31 +263,22 @@ nav {
     }
     /* Changing image height for desktop */
     .vidImage {
-        height: 12vh;
+        height: 7vh;
     }
     /* Realigning event name for desktop */
     #vidEventName {
         margin-left: 25%;
     }
+    /* Adjusting click result content for desktop */
     #videoContainer {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
         justify-content: center;
     }
-    /* Adding a 1% margin to character names to allow some separation between the images and player names. */
-    .vidPlayerName {
-        margin: 1%;
+    #videoContainer .vidItem {
+        flex: 1;
     }
-    /* Add 2% padding to VS! */
-    .vidVersus {
-        padding: 2%;
-    }
-    /* Enlarge VOD text (but by how much - try 1.6em!) */
-    .vidPlayerName, .vidVersus {
-        font-size: 1.6em;
-    }
-    /* Hmmm...This is rather strange.
-       I think I'm gonna look into CSS grid for the next few days and see how if that lets me utilize better design principles + makes organizing
-       this and making it responsive easier!
-    */
 }
 
 

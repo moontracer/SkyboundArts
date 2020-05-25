@@ -313,11 +313,11 @@ class SkyboundResults extends React.Component {
                             <p id="vidEventName" onClick={this.startSearch}>{this.state.videos[video].eventName}</p>
                             <div id="videoContainer">
                             <img onClick={this.startImageSearch} className="vidImage" src={CharImgs[this.state.videos[video].p1Character]} alt={this.state.videos[video].p1Character} />
-                            <p className="vidPlayerName" onClick={this.startSearch}>{this.state.videos[video].p1Player}</p>
-                            <p className="vidVersus">VS</p>
+                            <p className="vidItem" onClick={this.startSearch}>{this.state.videos[video].p1Player}</p>
+                            <p className="vidItem">VS</p>
                             <img onClick={this.startImageSearch} className="vidImage" src={CharImgs[this.state.videos[video].p2Character]} alt={this.state.videos[video].p2Character} />
-                            <p className="vidPlayerName" onClick={this.startSearch}>{this.state.videos[video].p2Player}</p>
-                            <a className="vidLink" href={this.state.videos[video].videoLink}>
+                            <p className="vidItem" onClick={this.startSearch}>{this.state.videos[video].p2Player}</p>
+                            <a className="vidLink vidItem" href={this.state.videos[video].videoLink}>
                                 <PlayCircle />
                             </a>
                             </div>
