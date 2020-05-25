@@ -253,7 +253,7 @@ nav {
         font-size: 2.5em;
     }
     #showNoResults {
-        margin-right: 0%;
+        margin-right: 2%;
         font-size: 1.9em;
     }
     /* Altering search bar */
@@ -268,6 +268,10 @@ nav {
     /* Realigning event name for desktop */
     #vidEventName {
         margin-left: 25%;
+        font-size: 1.3em;
+    }
+    .vidItem {
+        font-size: 1.4em;
     }
     /* Adjusting click result content for desktop */
     #videoContainer {
@@ -278,6 +282,57 @@ nav {
     }
     #videoContainer .vidItem {
         flex: 1;
+    }
+    .showResults {
+        margin-top: 0%;
+        margin-left: 0%;
+        margin-right: 2%;
+    }
+    .resultData {
+        text-align: center;
+        margin: 0;
+        font-size: 1.7em;
+        padding: 1%;
+    }
+    /* Add Page CSS */
+    #addHeader {
+        font-size: 1.7em;
+    }
+    .addForm {
+        justify-content: center;
+        align-items: center;
+    }
+    .formInput {
+        width: 40%;
+        font-size: 1.5em;
+        height: initial;
+        margin-left: 0%;
+        margin-bottom: 2%;
+    }
+    #formSubmit {
+        width: 12%;
+        height: 5vh;
+        font-size: 1.7em;
+    }
+    #formReset {
+        width: 12%;
+        height: 5vh;
+        margin: 1% auto;
+        font-size: 1.7em;
+    }
+    .addLabels {
+        font-size: 1.5em;
+    }
+    .formRadioContainer {
+        font-size: 1.3em;
+    }
+    .formRadio {
+        width: 1.5em;
+        height: 3vh;
+    }
+    .addSelect {
+        height: 4vh;
+        font-size: 1.3em;
     }
 }
 
@@ -336,4 +391,18 @@ nav {
     Uncertain how to center the search results (not clicked results) look good on mobile. Need to look into closer.
 
     Potential CSS for videoContainer - changing justify-content to center?
+
+
+    TO-DO LIST:
+
+    (All you need to do for desktop view)
+    DONE!!! Fix alignment for search results - clean this up in a bit.
+    DONE!! Fix add page CSS
+    Help component?
+
+    So, let's look into what needs fixing on the add page.
+    On a first glance, we need to fix the following:
+    DONE - Make the length and etc. of Event Name, P1 Name, Video Link and P2 Name the same as the main page Search!
+    DONE - Resize the Add Video and Reset Form buttons
+    DONE - Enlarge the text for the Upload Video
 */

@@ -90,6 +90,7 @@ class AddVideo extends React.Component {
                 <input className="formInput" type="text" value={this.state.eventName} name="eventName" placeholder="Event Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p1Player} name="p1Player" placeholder="Player 1 Name" onChange={this.handleChange} />
                 <input className="formInput" type="text" value={this.state.p2Player} name="p2Player" onChange={this.handleChange} placeholder="Player 2 Name" />
+                <input type="text" className="formInput" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} />
                 <label className="addLabels" htmlFor="P1Character">Select P1's Character:</label>
                 <select className="addSelect" name="p1Character" id="P1Character" onChange={this.handleChange} value={this.state.p1Character}>
                     <option>Select an option!</option>
@@ -127,9 +128,9 @@ class AddVideo extends React.Component {
                     <option value={this.state.p2Character}>Player 2's Character</option>
                 </select> */}
                 <div className="formRadioContainer">
-                <input type="radio" id="p1Character" name="winnerCharacter" value={this.state.p1Character} onClick={this.handleChange} />
+                <input type="radio" id="p1Character" name="winnerCharacter" className="formRadio" value={this.state.p1Character} onClick={this.handleChange} />
                 <label htmlFor="p1Character">Player 1's Character</label>
-                <input type="radio" id="p2Character" name="winnerCharacter" value={this.state.p2Character} onClick={this.handleChange} />
+                <input type="radio" id="p2Character" name="winnerCharacter" className="formRadio" value={this.state.p2Character} onClick={this.handleChange} />
                 <label htmlFor="p2Character">Player 2's Character</label>
                 </div>
                 <p className="addLabels">Which player won the match?</p>
@@ -139,12 +140,14 @@ class AddVideo extends React.Component {
                     <option value={this.state.p2Player}>Player 2</option>
                 </select> */}
                 <div className="formRadioContainer">
-                <input type="radio" id="p1Player" name="winnerPlayer" value={this.state.p1Player} onClick={this.handleChange} />
+                <input type="radio" id="p1Player" name="winnerPlayer" className="formRadio" value={this.state.p1Player} onClick={this.handleChange} />
                 <label htmlFor="p1Player">Player 1</label>
-                <input type="radio" id="p2Player" name="winnerPlayer" value={this.state.p2Player} onClick={this.handleChange} />
+                <input type="radio" id="p2Player" name="winnerPlayer" className="formRadio" value={this.state.p2Player} onClick={this.handleChange} />
                 <label htmlFor="p2Player">Player 2</label>
                 </div>
-                <input type="text" className="formInput" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} />
+                <br />
+                {/* Moving Video Link above */}
+                {/* <input type="text" className="formInput" placeholder="Video Link" name="videoLink" value={this.state.videoLink} onChange={this.handleChange} /> */}
                 <input id="formSubmit" type="submit" value="Add Video" />
                 </form>
                 <button id="formReset"  onClick={this.resetForm}>Reset Form</button>
