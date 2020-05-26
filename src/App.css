@@ -209,6 +209,21 @@ nav {
     display: block;
     margin: 4% auto;
 }
+.helpContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    /* SET A MOBILE FONT SIZE */
+}
+#helpHeader {
+    text-decoration: underline;
+    text-align: center;
+}
+.helpQuestion {
+    text-align: center;
+}
 
 /* Potential CSS Things To Do:
     Scale nav font so it looks a lot larger on desktop view, currently the text and icons both look rather small.
@@ -334,6 +349,18 @@ nav {
         height: 4vh;
         font-size: 1.3em;
     }
+    .helpContainer {
+        font-size: 1.3em;
+    }
+    #helpHeader {
+        font-size: 1.6em;
+    }
+    .helpQuestion {
+        font-size: 1.4em;
+    }
+    #helpSubtext {
+        width: 50%;
+    }
 }
 
 
@@ -398,11 +425,15 @@ nav {
     (All you need to do for desktop view)
     DONE!!! Fix alignment for search results - clean this up in a bit.
     DONE!! Fix add page CSS
-    Help component?
+    DONE! Help component
 
     So, let's look into what needs fixing on the add page.
     On a first glance, we need to fix the following:
     DONE - Make the length and etc. of Event Name, P1 Name, Video Link and P2 Name the same as the main page Search!
     DONE - Resize the Add Video and Reset Form buttons
     DONE - Enlarge the text for the Upload Video
+
+    The only changes I really need to make are to make sure the website is responsive on different platforms and to
+    specifically adjust how the icons are resized depending on the platform width. That being said, everything else is fine!
+    You should work on resume stuff for now.
 */

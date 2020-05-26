@@ -19,7 +19,7 @@ class SkyboundHome extends React.Component {
                 <nav>
                     <Link className="navLink" to="/">SKYBOUND ARTS</Link>
                     <Link to="/add"><PlusCircle color="white" size={30} /></Link>
-                    <HelpCircle color="white" size={30} />
+                    <Link to="/help"><HelpCircle color="white" size={30} /></Link>
                     <a className="navLink" href="http://forums.skyboundarts.com">FORUMS</a>
                     {/* <Menu /> */}
                 </nav>
