@@ -41,10 +41,10 @@ class SkyboundResults extends React.Component {
     async componentDidMount(){
         //on componentMount, get all the players, characters, videos, and tags from the database. Once they are retrieved, load the page.
         const [playerResponse, characterResponse, tagResponse, eventResponse] = await Promise.all([
-            axios.get("http://localhost:5000/api/players/"),
-            axios.get("http://localhost:5000/api/characters/"),
-            axios.get("http://localhost:5000/api/videotags/"),
-            axios.get("http://localhost:5000/api/events/")
+            axios.get("http://skyboundarts.azurewebsites.net/api/players/"),
+            axios.get("http://skyboundarts.azurewebsites.net/api/characters/"),
+            axios.get("http://skyboundarts.azurewebsites.net/api/videotags/"),
+            axios.get("http://skyboundarts.azurewebsites.net/api/events/")
         ]);
         this.setState({
             players: Object.values(playerResponse.data),
@@ -223,7 +223,7 @@ class SkyboundResults extends React.Component {
     async searchOptions(playerName = "", characterName = "", eventName = ""){
         //Default search - performed when a search request is first conducted on the site
         if (this.state.videoIDs.length === 0){
-            var videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+            var videoResponse = await axios.get(`http://skyboundarts.azurewebsites.net/api/videos/search/?playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
                 videos: Object.values(videoResponse.data)
             },
@@ -233,7 +233,7 @@ class SkyboundResults extends React.Component {
         }
         else {
             //Search that's conducted when users have already inserted a query which has narrowed down the selection of videos
-            videoResponse = await axios.get(`http://localhost:5000/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
+            videoResponse = await axios.get(`http://skyboundarts.azurewebsites.net/api/videos/search/?videoIDs=${this.state.videoIDs}&playerName=${playerName}&characterName=${characterName}&eventName=${eventName}`);
             this.setState({
                 videos: Object.values(videoResponse.data)
             },
@@ -250,7 +250,7 @@ class SkyboundResults extends React.Component {
     }
     async tagSearch(){
         //This search is ran when users click on a tag from the database and a query hasn't been performed yet
-        const tagSearchResponse = await axios.get(`http://localhost:5000/api/mapvideotag/search/?searchTagID=${this.state.tagsQuery}`);
+        const tagSearchResponse = await axios.get(`http://skyboundarts.azurewebsites.net/api/mapvideotag/search/?searchTagID=${this.state.tagsQuery}`);
         this.setState({
             searchTags: Object.values(tagSearchResponse.data)
         },
@@ -267,7 +267,7 @@ class SkyboundResults extends React.Component {
     }
     async findTagVideos(){
         //This search is done after tagSearch() in order to obtain the IDs of the respective videos that had that tag
-        const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.tempTags}`);
+        const vidResponse = await axios.get(`http://skyboundarts.azurewebsites.net/api/videos/find/?videoIDs=${this.state.tempTags}`);
         this.setState({
             videos: Object.values(vidResponse.data)
         },
@@ -277,7 +277,7 @@ class SkyboundResults extends React.Component {
     }
     async findVideos(){
         //This is ran when the user attempts to search for a video by its ID.
-        const vidResponse = await axios.get(`http://localhost:5000/api/videos/find/?videoIDs=${this.state.videoIDs}`);
+        const vidResponse = await axios.get(`http://skyboundarts.azurewebsites.net/api/videos/find/?videoIDs=${this.state.videoIDs}`);
         this.setState({
             videos: Object.values(vidResponse.data)
         },

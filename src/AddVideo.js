@@ -43,30 +43,31 @@ class AddVideo extends React.Component {
         const player2 = {
             "playerName": this.state.p2Player
         }
-        await axios.post("http://localhost:5000/api/videos", video)
+        await axios.post("http://skyboundarts.azurewebsites.net/api/videos/", video)
         .then(function (response){
             console.log(response);
         })
         .catch(function (error){
             console.log(error);
         })
-        await axios.post("http://localhost:5000/api/events", event)
+        await axios.post("http://skyboundarts.azurewebsites.net/api/events/", event)
         .then(function (response){
             console.log(response);
         })
         .catch(function (error){
             console.log(error);
         })
-        await axios.post("http://localhost:5000/api/players", player1)
+        await axios.post("http://skyboundarts.azurewebsites.net/api/players/", player1)
         .then(function (response){
             console.log(response);
         })
         .catch(function (error){
             console.log(error);
         })
-        await axios.post("http://localhost:5000/api/players", player2)
+        await axios.post("http://skyboundarts.azurewebsites.net/api/players/", player2)
         .then(function (response){
             console.log(response);
+            this.resetForm();
         })
         .catch(function (error){
             console.log(error);
